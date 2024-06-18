@@ -1,10 +1,48 @@
 #include "Starter.hpp"
 
+class MyString
+{
+public:
+	MyString()
+	{
+		size = 80;
+		char* word = new char[size];
+	}
+	MyString(int size)
+	{
+		int newSize = size;
+		char* word = new char[newSize];
+	}
+	MyString(const char* word)
+	{
+		size = strlen(word)+1;
+		this->word = new char[size];
+		memcpy(this->word, word, size);
+	}
+	
+	MyString operator + (MyString & other)
+	{
+		this->size = size + other.size + 1;
+		strcat_s(this->word, size, other.word);
+		return word;
+	}
+
+private:
+	int size;
+	char* word;
+
+
+};
+
+
+
+
 int main()
 {
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 	srand(time(NULL));
+	/*
 	//															  |							необязательно							 |
 	std::vector<int> one{ 1,2,4,2,9 }; //std::vector<Тип_данных> Имя_переменной(количество_чисел,число_которым_будут_все_числа){указать_сами_числа}
 
@@ -87,5 +125,14 @@ int main()
 	std::cout << one.capacity();
 	std::cout << '\n';
 
+	*/
+	
+	MyString a;
+	MyString b(5);
+	MyString c("Hello");
+	MyString d;
+	d = " word";
+	MyString f = c + d;
+	
 	return 0;
 }
